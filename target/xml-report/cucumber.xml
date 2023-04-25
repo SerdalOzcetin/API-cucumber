@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="Cucumber" time="7.557" tests="1" skipped="0" failures="0" errors="0">
-<testcase classname="You can log in to the system with your email and password" name="Success Response" time="6.964">
+<testsuite name="Cucumber" time="11.279" tests="1" skipped="0" failures="0" errors="0">
+<testcase classname="It is used to list all the countries registered in the database." name="Success Response" time="10.378">
 <system-out><![CDATA[
-Given API user sets the "api/login" path parameters.........................passed
-And Prepare the Request Body "email","password" that ıs needed for Login....passed
-And Send Post Request for Login.............................................passed
+Given API user sets the "api/profile/allCountries" path parameters..........passed
+Then Send Get request for allCountries......................................passed
 ]]></system-out>
 </testcase>
 </testsuite>

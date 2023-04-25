@@ -7,6 +7,7 @@ import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.specification.RequestSpecification;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
+import utulities.Authentication;
 import utulities.ConfigReader;
 import utulities.Driver;
 
@@ -18,9 +19,10 @@ public class Hooks {
      */
 
     public static RequestSpecification spec;
+    public static String token;
 
 
-    @Before
+    @Before(order = 0)
     public void setUpAPI(){
 
         spec = new RequestSpecBuilder().setBaseUri(ConfigReader.getProperty("base_url")).build();
@@ -28,15 +30,9 @@ public class Hooks {
     }
 
 
-    @After
-    public void tearDownScenarios(Scenario scenario){
-        System.out.println("After Methodu");
-//        Eger bir Scenario FAIL ederse, ekran goruntusunu al ve rapora ekle
-        if (scenario.isFailed()) {
-            final byte[] failedScreenshot = ((TakesScreenshot) Driver.getDriver()).getScreenshotAs(OutputType.BYTES);
-//                       ekran goruntusu    file tipi                  ekran goruntusunun adi
-            scenario.attach(failedScreenshot, "image/png", "failed_scenario_" + scenario.getName());
-            Driver.closeDriver();
-        }
+
+    @Before(order = 1)
+    public void beforeGenerateToken(){
+        token = Authentication.generateToken();
     }
 }

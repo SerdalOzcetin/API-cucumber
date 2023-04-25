@@ -4,10 +4,12 @@ import com.google.gson.JsonObject;
 import hooks.Hooks;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.json.JSONObject;
 import pojos.Pojo_RegisterCustomer;
+import utulities.Authentication;
 import utulities.ConfigReader;
 
 import static io.restassured.RestAssured.given;
@@ -77,12 +79,30 @@ public class CoomonAPI {
     @And("Send Post Request for Login")
     public void sendPostRequestForLogin() {
 
-        Response response = given()
+       Response response = given()
                 .spec(Hooks.spec)
                 .contentType(ContentType.JSON)
                 .body(requestBodyforLogin.toString()).header("Accept","application/json")
                 .post(fullPath);
 
         response.prettyPrint();
+
+
+
+        Authentication.generateToken();
+    }
+
+    @Then("Send Get request for allCountries")
+    public void sendGetRequestForAllCountries() {
+
+        Response response = given()
+                .spec(Hooks.spec)
+                .headers("Authorization","Bearer "+Hooks.token)
+                .contentType(ContentType.JSON)
+                .header("Accept","application/json")
+                .when().get(fullPath);
+
+        response.prettyPrint();
+
     }
 }
