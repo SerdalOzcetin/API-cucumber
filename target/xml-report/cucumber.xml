@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Cucumber" time="2.635" tests="1" skipped="0" failures="0" errors="0">
+<testcase classname="Register Customer" name="Success Response" time="1.96">
+<system-out><![CDATA[
+Given API user sets the "x/y/z" path parameters.............................passed
+]]></system-out>
+</testcase>
+</testsuite>

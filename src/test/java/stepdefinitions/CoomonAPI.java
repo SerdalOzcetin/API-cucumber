@@ -5,7 +5,7 @@ import io.cucumber.java.en.Given;
 
 public class CoomonAPI {
 
-
+       public static String fullPath;
     @Given("API user sets the {string} path parameters")
     public void apı_user_sets_the_path_parameters(String rawPaths) {
 
@@ -26,6 +26,9 @@ public class CoomonAPI {
 
         tempPath.deleteCharAt(tempPath.lastIndexOf("{"));
         tempPath.deleteCharAt(tempPath.lastIndexOf("/"));
+
+        fullPath = tempPath.toString();
     }
+
 
 }

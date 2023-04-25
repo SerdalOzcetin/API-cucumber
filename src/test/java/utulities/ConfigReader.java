@@ -9,7 +9,7 @@ public class ConfigReader {
     //      static block :
     static {
 //        data cekmek istedigim dosyanin path'i
-        String path = "configuration.properties";
+        String path = "C:\\Users\\asus\\IdeaProjects\\API-Cucumber\\src\\test\\resources\\configuration.properties";
         try {
 //            configuration.property dosyasini acar
             //Opening configuration.properties file using FileInputStream
