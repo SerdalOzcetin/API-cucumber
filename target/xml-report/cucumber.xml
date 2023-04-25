@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="Cucumber" time="2.635" tests="1" skipped="0" failures="0" errors="0">
-<testcase classname="Register Customer" name="Success Response" time="1.96">
+<testsuite name="Cucumber" time="10.481" tests="1" skipped="0" failures="0" errors="0">
+<testcase classname="Register Customer" name="Success Response" time="9.785">
 <system-out><![CDATA[
-Given API user sets the "x/y/z" path parameters.............................passed
+Given API user sets the "api/register" path parameters......................passed
+And Prepare the Request Body "serdar","oz","serdaroz","seradroz@gmail.com","123456.0","123456.0","customer","5456787676","678678766565788" that ıs needed for Register Customer.passed
+And Send Post Request for Register Customer.................................passed
 ]]></system-out>
 </testcase>
 </testsuite>

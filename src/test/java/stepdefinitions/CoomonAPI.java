@@ -1,18 +1,25 @@
 package stepdefinitions;
 
 import hooks.Hooks;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
+import io.restassured.http.ContentType;
+import io.restassured.response.Response;
+import pojos.Pojo_RegisterCustomer;
+
+import static io.restassured.RestAssured.given;
 
 public class CoomonAPI {
 
        public static String fullPath;
+    Pojo_RegisterCustomer requestBody;
     @Given("API user sets the {string} path parameters")
     public void apı_user_sets_the_path_parameters(String rawPaths) {
 
 
         String[] paths = rawPaths.split("/");
 
-        StringBuilder tempPath = new StringBuilder("{");
+        StringBuilder tempPath = new StringBuilder("/{");
 
         for (int i = 0; i <paths.length ; i++) {
 
@@ -31,4 +38,23 @@ public class CoomonAPI {
     }
 
 
+    @And("Prepare the Request Body {string},{string},{string},{string},{string},{string},{string},{string},{string} that ıs needed for Register Customer")
+    public void prepareTheRequestBodyThatIsNeededForRegisterCustomer(String first_name, String last_name, String username, String email, String password, String password_confirmation, String user_type, String phone, String referral_code) {
+
+       requestBody = new Pojo_RegisterCustomer(first_name,last_name,username,email,password,password_confirmation,user_type,phone,referral_code);
+
+    }
+
+    @And("Send Post Request for Register Customer")
+    public void sendPostRequestForRegisterCustomer() {
+
+        Response response = given()
+                .spec(Hooks.spec)
+                .contentType(ContentType.JSON).header("Accept","application/json")
+                .when().body(requestBody)
+                .post(fullPath);
+
+        response.prettyPrint();
+
+    }
 }
